@@ -2,18 +2,10 @@ from django.shortcuts import render,redirect
 
 from .models import *
 
-from .scraper import game_Scraper,article_Scraper
-
 import smtplib
 from .forms import MessageForm
 
 # Create your views here.
-
-def scrape(request):
-    if request.user.is_authenticated:
-        # game_Scraper()
-        article_Scraper()
-    return redirect('/')
 
 def home(request):
     about=About.objects.all()[0]
