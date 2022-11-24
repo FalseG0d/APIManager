@@ -1,14 +1,14 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+from .scraper import medium_Scraper
 
 # Create your views here.
-
+    
+@api_view(['GET'])
 def scrape(request):
-    profile = { }
+    medium_url = request.GET.get('medium')
 
-    if request.method == "POST":
-        profile = {
-            "name": request.POST.get('name')
-        }
-
-    return render(request, "test.html", profile)
+    return Response(
+        medium_Scraper(medium_url)
+        )
