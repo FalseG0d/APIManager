@@ -37,6 +37,14 @@ from bs4 import BeautifulSoup
         
 #         game.save()
 
+# color = {
+#     '#563d7c': 'CSS',
+#     '#3572A5': 'Python',
+#     '#e34c26': 'HTML',
+#     '#3178c6': 'TypeScript',
+#     '#f34b7d': 'C++',
+#     ''
+# }
 
 def medium_Scraper(url):
 
@@ -71,6 +79,53 @@ def medium_Scraper(url):
             'link': str(link),
             'abstract': str(para),
         }
+
+    return res
+
+
+def github_Scraper(url):
+
+    r=re.get(url)
+    htmlcontent=r.content
+
+    soup=BeautifulSoup(htmlcontent,'html.parser')
+
+    navBar=soup.find('nav', class_="UnderlineNav-body width-full p-responsive js-sidenav-container-pjax").find_all('a')
+
+    res = {}
+
+    res = {
+        'repositories': navBar[1].find('span').contents[0],
+        'project': navBar[2].find('span').contents[0],
+        'packages': navBar[3].find('span').contents[0],
+        'stars': navBar[4].find('span').contents[0]
+    }
+
+    # fameRepo=soup.find('ol').find_all('li')
+
+    # print(famRepo)
+
+    # for repo in fameRepo:
+        # name = repo.find('p', class_="pinned-item-desc").contents[0].strip()
+        # desc = repo.find('p', class_="pinned-item-desc").contents[0].strip()
+        # name = repo.find('span', class_="repo").contents[0]
+        # lang = repo.find('span', class_="repo-language-color")
+
+        # if lang:
+        #     print(color[lang.get('style').split(':')[1].strip()])
+
+    # res['famousRepo'] = [famRepo]
+
+    # for repo in famRepo:
+    #     name = repo.find('span', class_="Label Label--secondary v-align-middle ml-1")
+    #     lang = repo.find('span', itemprop_="programmingLanguage")
+    #     desc = repo.find('p', class_="pinned-item-desc color-fg-muted text-small d-block mt-2 mb-3")
+
+    #     res['famousRepo'].append({
+    #         'name': name,
+    #         'language': lang,
+    #         'description': desc
+    #     })
 
     return res
 
