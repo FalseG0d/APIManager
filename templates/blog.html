@@ -1,0 +1,94 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="description" content="Apoorv goes by the name of FalseG0d on Github. He forsees huge change due to technology and really wishes to be a part of it.">
+    <meta name="keywords" content="Apoorv, Garg, Web Developer, Freelance, Hire, Build a Website, Portfolio">
+    <meta name="author" content="Apoorv Garg">
+    <link rel="icon" href="{{about.favicon.url}}" type="image/gif" sizes="16x16">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+    <title>{{about.first_name}} {{about.last_name}}</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="site-navigation">
+        <div class="site-navigation-inner site-container">
+            <a href="/"><img src="{{about.logo.url}}" alt="site logo"></a>
+            <div class="main-navigation">
+                <a href="/games">Games</a>
+                <a href="/games">Blogs</a>
+                <a href="/games">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navigation end -->
+
+    <!-- Top banner -->
+    <section class="fh5co-top-banner" id="#home">
+        <div class="top-banner__inner site-container">
+            <div class="top-banner__text">
+                <div class="top-banner__text-up">
+                    <h4 style="color: white;">Hey!! Checkout</h4>
+                    <h2 class="top-banner__h1">My Blogs</h2>
+                </div><br>
+                <p>{{about.introduction}}
+                </p>
+                <div class="space"></div>
+                <a target="_blank" href="https://studygyaan.com/" class="brand-button">View More</a>
+            </div>
+        </div>
+    </section>
+    <!-- Top banner end -->
+    <div class="space"></div>
+
+    <!-- Work -->
+    <section class="fh5co-books" id="#projects">
+        <div class="site-container">
+
+        </div>
+    </section>
+    <!-- Work end -->
+
+
+    <!-- Social -->
+    <section class="fh5co-social">
+        <div class="site-container">
+            <div class="social">
+                <h5>Find me on social media</h5>
+                <div>
+                    {% for link in links %}
+                    <a href="{{link.link}}" target="_blank"><i style="color: white;font-size: x-large;" class="{{link.icon}}"></i></a> {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Social -->
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-bottom" style="align-items: center;text-align: center;">
+            <div class="site-container footer-bottom-inner">
+                <div style="padding: 1%;"></div>
+                <p style="align-items: center;text-align: center;">© 2020 | You have reached the perspnal website of Apoorv Garg| Design by <a href="https://freehtml5.co/" target="_blank">freehtml5.co</a> and <a target="_blank" href="https://github.com/FalseG0d">FalseG0d</a> | All rights Reserved.</p>
+                <div style="padding: 1%;"></div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer end -->
+
+    <!-- Scripts -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/slick.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
