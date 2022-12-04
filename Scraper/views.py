@@ -1,9 +1,14 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+from django.shortcuts import render
 from .scraper import medium_Scraper, github_Scraper
 
 # Create your views here.
+
+def home(request):
+    return render(request,"scrape.html")
+
 
 @api_view(['GET'])
 def scrape_medium(request):

@@ -1,1 +1,1 @@
-web: gunicorn PortfolioUpdateAPI.wsgi --log-file -
+web: gunicorn APIManager.wsgi --log-file -
