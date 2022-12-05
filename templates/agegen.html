@@ -1,9 +1,15 @@
 <h2>Age and Gender</h2>
 
-<form action="getAgeGen" method="post">
-    Image: <input type="file" name="image" /><br />
+<form action="{% url 'upload_image' %}" method="post" enctype="multipart/form-data">
+    {{ form.as_p }}
     <input type="submit" value="Submit" />
  </form>
 
 
- <img src="{{ upload.url }}" alt="...">
+ <p>{{img_object}}</p>
+
+ <img src="{{img_object}}">
+
+ {% comment %} {{upload}} {% endcomment %}
+
+ {% comment %} <img src="{{ upload.url }}" alt="..."> {% endcomment %}

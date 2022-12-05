@@ -1,26 +1,29 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .models import ImageModel
+from .forms import ImageForm
 
 from django.shortcuts import render
 
-from django.http import FileResponse
+# from .AgeGenCalc import detect
 
 # Create your views here.
 
 def upload_image(request):
-    data = dict()
-    if "GET" == request.method:
-        return render(request, 'agegen.html', data)
-    
-    # process POST request
-    files = request.FILES
-    image = files.get("image")
-
-    print(files)
-    data["upload"] = image
-    
+    data = {}
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        data['form'] = form
+ 
+        if form.is_valid():
+            img_object = form.instance
+            detect.printAgeGen(img_object)
+            # print(img_object.image)
+            # data['img_object'] = img_object.image
+            form.save()
+    else:
+        form = ImageForm()
+        data['form'] = form
     return render(request, 'agegen.html', data)
 
 

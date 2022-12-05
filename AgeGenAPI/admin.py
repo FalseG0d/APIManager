@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import *
+
+class ImageAdmin(admin.ModelAdmin):
+    readonly_fields = ('id',)
 
 # Register your models here.
+admin.site.register(ImageModel, ImageAdmin)
