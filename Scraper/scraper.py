@@ -1,59 +1,14 @@
 import requests as re
 from bs4 import BeautifulSoup
 
-
-# def game_Scraper():
-#     url="https://falseg0d.itch.io/"
-
-#     r=re.get(url)
-#     htmlcontent=r.content
-
-#     soup=BeautifulSoup(htmlcontent,'html.parser')
-
-#     context=[]
-
-#     for link in soup.find_all('a',class_="title game_link"):
-#         context.append(link.string)
-
-#     for link in soup.find_all('a',class_="thumb_link game_link"):
-#         context.append(link.get('href'))
-
-#     for link in soup.find_all('div',class_="game_thumb"):
-#         context.append(link.get('style').split('\'')[1])
-
-#     for link in soup.find_all('div',class_="game_text"):
-#         context.append(link.string)
-
-#     for link in soup.find_all('div',class_="game_genre"):
-#         context.append(link.string)
-
-
-#     Game.objects.filter(scrapable=True).delete()
-#     x=len(context)/5
-#     x=int(x)
-
-#     for i in range(x):
-#         game=Game(name=context[i],itch_link=context[x*1+i],image=context[x*2+i],description=context[x*3+i],genre=context[x*4+i],scrapable=True)
-        
-#         game.save()
-
-# color = {
-#     '#563d7c': 'CSS',
-#     '#3572A5': 'Python',
-#     '#e34c26': 'HTML',
-#     '#3178c6': 'TypeScript',
-#     '#f34b7d': 'C++',
-#     ''
-# }
-
 def medium_Scraper(url):
 
     r=re.get(url)
     htmlcontent=r.content
 
-    soup=BeautifulSoup(htmlcontent,'html.parser')
+    soup = BeautifulSoup(htmlcontent,'html.parser')
 
-    articles=soup.find_all('article')
+    articles = soup.find_all('article')
 
     res = {}
 
@@ -90,7 +45,7 @@ def github_Scraper(url):
 
     soup=BeautifulSoup(htmlcontent,'html.parser')
 
-    navBar=soup.find('nav', class_="UnderlineNav-body width-full p-responsive js-sidenav-container-pjax").find_all('a')
+    navBar = soup.find('nav', class_="UnderlineNav-body width-full p-responsive js-sidenav-container-pjax").find_all('a')
 
     res = {}
 
@@ -129,5 +84,45 @@ def github_Scraper(url):
 
     return res
 
+def itch_Scraper(url):
+    r=re.get(url)
+    htmlcontent=r.content
 
-# article_Scraper()
+    soup=BeautifulSoup(htmlcontent,'html.parser')
+
+    # print(soup)
+
+    res = {}
+    links = soup.find('div', class_="user_links").findAll('a')
+
+    res['links'] = []
+
+    for link in links:
+        res['links'].append(link.get('href'))
+
+    res['game'] = []
+    games = soup.find_all('div', class_="game_cell")
+
+    for game in games:
+        # title = game.find('div', class_="title")
+        # res['game'][title] = {
+        #     'link' : game.find('a').get('href'),
+        #     'about' : game.find('div', class_="game_text")
+        # }
+
+        image = game.find('img').get('data-lazy_src')
+        content = game.find('div', 'game_text').contents[0]
+        link = game.find('div', 'game_cell_data').find('a').get('href')
+        title = game.find('div', 'game_cell_data').find('a').contents[0]
+
+        res['game'].append(
+                {
+                'title': title,
+                'image': image,
+                'link': link,
+                'content': content
+                })
+
+        # print(image + link)
+
+    return res

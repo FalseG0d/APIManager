@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from django.shortcuts import render
-from .scraper import medium_Scraper, github_Scraper
+from .scraper import medium_Scraper, github_Scraper, itch_Scraper
 
 # Create your views here.
 
@@ -24,4 +24,13 @@ def scrape_github(request):
 
     return Response(
         github_Scraper(github_url)
+        )
+
+
+@api_view(['GET'])
+def scrape_itch(request):
+    itch_url = request.GET.get('url')
+
+    return Response(
+        itch_Scraper(itch_url)
         )

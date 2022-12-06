@@ -5,6 +5,9 @@ from .forms import ImageForm
 
 from django.shortcuts import render
 
+import cv2
+import numpy as np
+
 # from .AgeGenCalc import detect
 
 # Create your views here.
@@ -16,11 +19,9 @@ def upload_image(request):
         data['form'] = form
  
         if form.is_valid():
-            img_object = form.instance
-            detect.printAgeGen(img_object)
-            # print(img_object.image)
-            # data['img_object'] = img_object.image
-            form.save()
+            image = form.save()
+
+            print(image.image.url)
     else:
         form = ImageForm()
         data['form'] = form
