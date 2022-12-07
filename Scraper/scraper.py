@@ -56,22 +56,14 @@ def github_Scraper(url):
         'stars': navBar[4].find('span').contents[0]
     }
 
-    # fameRepo=soup.find('ol').find_all('li')
+    res['famousRepo'] = []
 
-    # print(famRepo)
+    fameRepos=soup.find_all('li', class_="mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-6")
+
+    for fameRepo in fameRepos:
+        print(fameRepo)
 
     # for repo in fameRepo:
-        # name = repo.find('p', class_="pinned-item-desc").contents[0].strip()
-        # desc = repo.find('p', class_="pinned-item-desc").contents[0].strip()
-        # name = repo.find('span', class_="repo").contents[0]
-        # lang = repo.find('span', class_="repo-language-color")
-
-        # if lang:
-        #     print(color[lang.get('style').split(':')[1].strip()])
-
-    # res['famousRepo'] = [famRepo]
-
-    # for repo in famRepo:
     #     name = repo.find('span', class_="Label Label--secondary v-align-middle ml-1")
     #     lang = repo.find('span', itemprop_="programmingLanguage")
     #     desc = repo.find('p', class_="pinned-item-desc color-fg-muted text-small d-block mt-2 mb-3")
