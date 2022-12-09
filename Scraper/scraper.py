@@ -82,8 +82,6 @@ def itch_Scraper(url):
 
     soup=BeautifulSoup(htmlcontent,'html.parser')
 
-    # print(soup)
-
     res = {}
     links = soup.find('div', class_="user_links").findAll('a')
 
