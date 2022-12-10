@@ -61,18 +61,24 @@ def github_Scraper(url):
     fameRepos=soup.find_all('li', class_="mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-6")
 
     for fameRepo in fameRepos:
+        title = fameRepo.find('span', class_="repo").contents[0]
+        content = ""
+        
+        try:
+            content = fameRepo.find('p', class_="pinned-item-desc color-fg-muted text-small d-block mt-2 mb-3").contents[0].split("\n")[1].strip()
+            if len(content) == 0:
+                raise Exception("No Description Found")
+        except:
+            content = "No Description Found"
+
         print(fameRepo)
 
-    # for repo in fameRepo:
-    #     name = repo.find('span', class_="Label Label--secondary v-align-middle ml-1")
-    #     lang = repo.find('span', itemprop_="programmingLanguage")
-    #     desc = repo.find('p', class_="pinned-item-desc color-fg-muted text-small d-block mt-2 mb-3")
-
-    #     res['famousRepo'].append({
-    #         'name': name,
-    #         'language': lang,
-    #         'description': desc
-    #     })
+        res['famousRepo'].append(
+                {
+                'title': title,
+                'link': url + "/" + title,
+                'content': content
+                })
 
     return res
 
@@ -94,11 +100,6 @@ def itch_Scraper(url):
     games = soup.find_all('div', class_="game_cell")
 
     for game in games:
-        # title = game.find('div', class_="title")
-        # res['game'][title] = {
-        #     'link' : game.find('a').get('href'),
-        #     'about' : game.find('div', class_="game_text")
-        # }
 
         image = game.find('img').get('data-lazy_src')
         content = game.find('div', 'game_text').contents[0]
@@ -112,7 +113,5 @@ def itch_Scraper(url):
                 'link': link,
                 'content': content
                 })
-
-        # print(image + link)
 
     return res
