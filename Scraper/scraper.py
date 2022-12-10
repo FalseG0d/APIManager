@@ -37,7 +37,6 @@ def medium_Scraper(url):
 
     return res
 
-
 def github_Scraper(url):
 
     r=re.get(url)
