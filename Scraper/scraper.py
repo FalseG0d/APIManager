@@ -73,7 +73,6 @@ def github_Scraper(url):
         print(fameRepo)
 
         user = url.split('/')[1]
-
         image = "https://raw.githubusercontent.com" + user + "/{0}/master/images/banner.jpg"
 
         res['famousRepo'].append(
