@@ -70,7 +70,7 @@ def github_Scraper(url):
         except:
             content = "No Description Found"
 
-        print(fameRepo)
+        # print(fameRepo)
 
         user = url.split('/')[1]
         image = "https://raw.githubusercontent.com" + user + "/{0}/master/images/banner.jpg"
