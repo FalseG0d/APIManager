@@ -7,9 +7,8 @@ from .scraper import medium_Scraper, github_Scraper, itch_Scraper
 # Create your views here.
 
 def home(request):
-    
-    return render(request,"scrape.html")
 
+    return render(request,"scrape.html")
 
 @api_view(['GET'])
 def scrape_medium(request):
