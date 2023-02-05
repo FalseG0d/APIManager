@@ -18,6 +18,7 @@ def medium_Scraper(url):
 
         link=article.find('a')
         
+        # This has to change and made Dynamic 
         link ='https://gargapoorv1011.medium.com'+link.get('href').split('?')[0]
         
         date = article.find('a').string
