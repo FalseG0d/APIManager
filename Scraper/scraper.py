@@ -2,7 +2,6 @@ import requests as re
 from bs4 import BeautifulSoup
 
 def medium_Scraper(url):
-
     r=re.get(url)
     htmlcontent=r.content
 
