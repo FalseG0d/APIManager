@@ -6,7 +6,6 @@ def medium_Scraper(url):
     htmlcontent=r.content
 
     soup = BeautifulSoup(htmlcontent,'html.parser')
-
     articles = soup.find_all('article')
 
     res = {}
