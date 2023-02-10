@@ -12,7 +12,6 @@ def medium_Scraper(url):
 
     for article in articles:
         print(article)
-        # print("\n\n\n")
 
         link=article.find('a')
         
